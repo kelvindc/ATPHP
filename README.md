@@ -25,9 +25,12 @@ Features:
 
 8. Batch Add
 
-9. Validating function
+9. Access(Edit, View)
 
-10. Memcache/PHP Session support
+10. Validating function
+
+11. Memcache/PHP Session support
+
 
 
 Setting Up
@@ -47,8 +50,11 @@ Usage:
 ajax POST to URL: svc.php?m=ToDo&a=List
 
 Note:
+
 m - the Table name 
+
 a - the action
+
 
 
 2. Sample Update:
@@ -61,7 +67,9 @@ JSON illustration of the POST Variable:
 
 Note: the key should match the table fields
 
-3. UpdateBatch, and AddMatch
+
+
+3. UpdateBatch, and AddBatch are essentially the same, it will automatically check if the records have ID for update or else an Insert will be performed
 
 svc.php?m=ToDo&a=UpdateBatch
 
@@ -72,11 +80,16 @@ JSON illustration of the POST Variable:
 Note: todo_object should match the table fields, see the sample 2.
 
 
+
+
 Customization:
 
-Create your own customize function hook to replace the default is simple, simply using the TABLENAME+ACTION format, example:
+Create your own customize function to replace the default is simple, simply using the TABLENAME+ACTION format, example:
 
-ToDoList - where m=ToDo, the table name, a=List, the action
+function ToDoList
+
+where m=ToDo, the table name, a=List, the action
+
 
 sample:
 

@@ -1,6 +1,7 @@
 <?php
 /*
-
+ATPHP
+=======
 Copyright 2012 Ancientec Co., Ltd.
 ancientec.com
 
@@ -42,7 +43,6 @@ define('_CoreCookieDomain', isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"]
 //initialize variables
 $CoreSession = array();
 $User = '';
-$Cfg['Token'] = 'dcfdb1186007d46268d936a68415e807';
 
 //database setup,change it to your own server information
 $Cfg['DBLINK'] = mysql_connect("127.0.0.1:3306", "user","password");

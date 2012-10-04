@@ -1,6 +1,7 @@
 <?php
 /*
-
+ATPHP
+=======
 Copyright 2012 Ancientec Co., Ltd.
 ancientec.com
 
@@ -45,11 +46,13 @@ $Cfg['TBLUser']['Types'] = array("int(11) NOT NULL AUTO_INCREMENT","varchar(20) 
 $Cfg['TBLTodo']['Types'] = array("int(11) NOT NULL AUTO_INCREMENT","INT(11) NOT NULL","varchar(255) NOT NULL","Date NOT NULL","enum('0','1') NOT NULL default '0'");
 
 //customization sample
-//the following function will be trigger when m=Todo, a=List is called, this allow to list todos for the login user
+//the following function will be trigger when m=Todo, a=List is called
 function ToDoList(){
 	/*
 	do your customize action here
 	*/
+	
+	//call the default function
 	Listing('ToDo');
 }
 
