@@ -2,35 +2,19 @@
 /*
 ATPHP
 =======
-Copyright 2012 Ancientec Co., Ltd.
+Copyright 2013 Ancientec Co., Ltd.
 ancientec.com
 
 MIT License
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
 
 //memcache for saving sessions, set it to false if you want to use default php session function
-$memcache = memcache_connect('localhost', 11211);
-
+$memcache = function_exists('memcache_connect') ? memcache_connect('localhost', 11211) : false;
+if(!$memcache){
+	@session_start();
+}
 
 include_once('include/session.php');
 include_once('include/models.php');
@@ -375,22 +359,5 @@ function CreateTables(){
   echo $q;
   exit;
 }
-function Restore(){
-    global $_GET, $_POST;
-    $f = '';
-    if(isset($_GET['f'])) $f = $_GET['f'];
-    if(isset($_POST['f'])) $f = $_POST['f'];
-    $zip = new ZipArchive();
-    if ($zip->open($f) === TRUE) {
-        $s = $zip->getFromName('backup/backup.sql');
-        $zip->close();
-
-        file_put_contents('backup/b.sql',$s);
-        exec('F:/xampplite/mysql/bin/mysql --user=ap --password=ap < backup/b.sql');
-
-        @unlink('backup/b.sql');
-    }
-}
-
 
 ?>

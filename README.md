@@ -6,6 +6,7 @@ lightweight PHP prototyping framework aim to rapid develop CRUD backend with MyS
 
 With this tiny framwork, it's easy to prototype a simple backend with less than 5 minutes.
 
+Required PHP >= 5.3
 
 Features:
 
